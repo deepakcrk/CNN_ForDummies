@@ -18,5 +18,12 @@
 
 bool TrainManager::train(const char* prototxtFile, const char* configFile)
 {
+ //initWeights(prototxtFile, configFile);
+ 
+ //currently doing forwardPass
+
+
+
+
  return true;
 }
