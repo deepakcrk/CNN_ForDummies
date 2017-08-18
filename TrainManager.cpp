@@ -23,14 +23,15 @@ using namespace std;
 bool TrainManager::train(const char* prototxtFile, const char* configFile)
 {
  //initWeights(prototxtFile, configFile);
- //currently doing forwardPass only for one image
+ //currently doing ONE forwardPass only for ONE image
 
  Mat src = imread("input.jpeg");
  imshow("src", src);
  waitKey(0);
 
+ ForwardPass fwd;
 
-
+ fwd.forward(image /*************/ );
  
 
 

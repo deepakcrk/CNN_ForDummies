@@ -1,4 +1,6 @@
+#include <opencv2/opencv.hpp>
+
 class ForwardPass
 {
-  forward();
+  forward(Mat img);
 }
