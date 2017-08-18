@@ -6,9 +6,10 @@
 class TrainManager 
 {
 	public:
-	
-
-  	bool train(const char* prototxtFile, const char* configFile);
+		Trainer();
+		~Trainer();
+		
+  		bool train(const char* prototxtFile, const char* configFile);
 };
 
 #endif
