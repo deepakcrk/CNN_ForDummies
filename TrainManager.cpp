@@ -1,4 +1,8 @@
 #include <TrainManager.h>
+#include <opencv2/opencv.hpp>
+
+using namespace cv;
+using namespace std;
 
 
 /********* Now using hard coded layers as follows **********/
@@ -19,10 +23,15 @@
 bool TrainManager::train(const char* prototxtFile, const char* configFile)
 {
  //initWeights(prototxtFile, configFile);
+ //currently doing forwardPass only for one image
+
+ Mat src = imread("input.jpeg");
+ imshow("src", src);
+ waitKey(0);
+
+
+
  
- //currently doing forwardPass
-
-
 
 
  return true;
