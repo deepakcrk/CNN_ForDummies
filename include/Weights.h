@@ -7,6 +7,11 @@ using namespace cv;
 
 class Weights
 {
-  vector<vector<cv::Mat> > convWts;
-  vector<cv::Mat> fcWts;
+  public:
+    Weights( /******NEED to PASS STRUCT OF PROTOTX *******/);
+    initWeights( /******NEED to PASS STRUCT OF PROTOTX *******/);
+    vector<vector<vector<cv::Mat> > > m_convWts;
+    vector<cv::Mat> fcWts;
 }
+
+

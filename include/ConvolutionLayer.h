@@ -2,5 +2,8 @@
 
 class ConvolutionLayer
 {
-  bool convolution(Mat src, int i);
+    bool convolution(Mat src, int i);
+      Weights wts;
 };
+
+
