@@ -1,26 +1,22 @@
 #include <Weights.h>
 
 
-bool Weights::initWeights(/**************/)
+bool Weights::initWeights(vector<LayerParams> layers)
 {
 
-#define ConvLayers 3
-#define ConvLayer1_window 7
-#define ConvLayer1_output 25
-#define ConvLayer1_window 5
-#define ConvLayer1_output 45
-#define ConvLayer1_window 3
-#define ConvLayer1_output 55
+  //Add above things in map
+  vector<pair<int, int> > windowOutput;
+  for (int i=0; i<layers.size(); i++)
+  {
+    if (layers[i].type == CONV_LAYER)
+      windowOutput.push_back(make_pair(layers[i].windowSize, layers[i].outputs));
+  }
 
-//Add above things in map
-vector<pair<int, int> > windowOutput;
-windowOutput.push_back(make_pair(ConvLayer1_window, ConvLayer1_output);
-windowOutput.push_back(make_pair(ConvLayer2_window, ConvLayer2_output);
-windowOutput.push_back(make_pair(ConvLayer3_window, ConvLayer3_output);
+  //FIXME WEIGHTS FOR FULLY CONNECTED NOT INITIALIZED. XXX NEED TO ADD THAT
 
 
   //m_convWts
-   for (int i=0; i<ConvLayers; i++)
+  for (int i=0; i<ConvLayers; i++)
    {
       vector<vector<Mat> > filts;
       int totalFilters = windowOutput[i].second; //x3 incase of Color Image Now code is only for GRAY scale
@@ -44,7 +40,8 @@ windowOutput.push_back(make_pair(ConvLayer3_window, ConvLayer3_output);
       m_convWts.push_back(filts);
     }
 }
-Weights::Weights(vector<LayerParams> layerParams)
+Weights::Weights(vector<LayerParams> & layerParams)
 {
-  initWeights();
+  m_layerParams = layerParams;
+  initWeights(layerParams);
 }
