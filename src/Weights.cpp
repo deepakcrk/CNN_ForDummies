@@ -1,5 +1,11 @@
 #include <Weights.h>
 
+Weights::Weights(vector<LayerParams> & layerParams)
+{
+  m_layerParams = layerParams;
+  initWeights(layerParams);
+}
+
 
 bool Weights::initWeights(vector<LayerParams> layers)
 {
@@ -17,31 +23,27 @@ bool Weights::initWeights(vector<LayerParams> layers)
 
   //m_convWts
   for (int i=0; i<ConvLayers; i++)
-   {
-      vector<vector<Mat> > filts;
-      int totalFilters = windowOutput[i].second; //x3 incase of Color Image Now code is only for GRAY scale
-      int depth = 1;
-      if (i != 0)
-      {
-        depth =windowOutput[i].second - 1;
-      }
-
-      for (int j=0; j<totalFilters; j++)
-      {
-        vector<Mat> filts3d;
-        for (int k=0; k<depth;k++)
-        {
-          Mat filter1(windowOutput[i].first, windowOutput[i].first, CV_64FC1);
-          randu (filter1, Scalar(-1.0), Scalar(1.0)); //FIXME make it double vals and make it Gaussian
-          filts3d.push_back(filter1);
-        }
-        filts.push_back(filts3d);
-      }
-      m_convWts.push_back(filts);
+  {
+    vector<vector<Mat> > filts;
+    int totalFilters = windowOutput[i].second; //x3 incase of Color Image Now code is only for GRAY scale
+    int depth = 1;
+    if (i != 0)
+    {
+      depth =windowOutput[i - 1].second;
     }
+
+    for (int j=0; j<totalFilters; j++)
+    {
+      vector<Mat> filts3d;
+      for (int k=0; k<depth; k++)
+      {
+        Mat filter1(windowOutput[i].first, windowOutput[i].first, CV_64FC1);
+        randu (filter1, Scalar(-1.0), Scalar(1.0)); //FIXME make it double vals and make it Gaussian
+        filts3d.push_back(filter1);
+      }
+      filts.push_back(filts3d);
+    }
+    m_convWts.push_back(filts);
+  }
 }
-Weights::Weights(vector<LayerParams> & layerParams)
-{
-  m_layerParams = layerParams;
-  initWeights(layerParams);
-}
+
