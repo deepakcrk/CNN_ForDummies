@@ -20,6 +20,8 @@ struct layerParams
 {
   //BASED ON THE LAYER TYPE USE PARAMETERS
   enum LayerType type;
+  int cropX;
+  int cropY;
   int outputs;
   int windowSize  //use with pool aslo
   double lr;
