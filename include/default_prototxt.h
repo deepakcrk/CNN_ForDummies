@@ -14,7 +14,13 @@ enum LayerType
   NORM_LAYER = 6
 };
 
-
+// MKE ACT FUNCTION (actFunc) INTO A ENUM
+// MAKE poolingType INTO ENUM
+// MAKE fillType into enum
+//
+// RENAME VARIABLE NAMES PROPERLY
+//
+//
 
 struct layerParams
 {
@@ -28,7 +34,7 @@ struct layerParams
   double decay;
   double bias;    //used with other layers also
   int stride;     //used with pool also
-  int type; //gaussian
+  int fillType; //gaussian
   int std;
   int actFunc; //convert it in to enum for relu leaky relu etc.
   int poolingType;
