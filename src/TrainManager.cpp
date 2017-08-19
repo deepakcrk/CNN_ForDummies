@@ -135,11 +135,6 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
  m_fcon.init   (layers);
  m_norm.init (layers);
 
- ForwardPass  fwd (layers);
- BackwardPass bwd (layers);
-
- fwd.set (wts, pooler, conv, acti, fcon, norm);
- bwd.set (wts, pooler, conv, acti, fcon, norm);
 
 
  //FIXME load as gray scale currently coded for gray scale only
