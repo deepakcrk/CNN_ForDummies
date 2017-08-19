@@ -2,5 +2,6 @@
 
 class ForwardPass
 {
+  ForwardPass(vector<layerParams> layers);
   forward(Mat img);
 }

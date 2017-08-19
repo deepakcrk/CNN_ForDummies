@@ -1,21 +1,22 @@
 #include <TrainManager.h>
 #include <opencv2/opencv.hpp>
-#include <default_prototxt.h>
+#include <LayerContext.h>
+
 using namespace cv;
 using namespace std;
 
 
-bool TrainManager::fillSomeDefaultValues(vector<layerParams> & layers)
+bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
 {
- struct layerParams layer1; 
- struct layerParams layer2;
- struct layerParams layer3;
- struct layerParams layer4;
- struct layerParams layer5;
- struct layerParams layer6;
- struct layerParams layer7;
- struct layerParams layer8;
- struct layerParams layer9;
+ struct LayerParams layer1; 
+ struct LayerParams layer2;
+ struct LayerParams layer3;
+ struct LayerParams layer4;
+ struct LayerParams layer5;
+ struct LayerParams layer6;
+ struct LayerParams layer7;
+ struct LayerParams layer8;
+ struct LayerParams layer9;
  /*************Crop Layer***************/
  layer1.layerNum = 1;
  layer1.type = CROP_LAYER;  
@@ -102,7 +103,7 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
 {
  
   //Layer Context
-  vector<layerParams> layers;
+  vector<LayerParams> layers;
  
 
  fillSomeDefaultValues(layers);

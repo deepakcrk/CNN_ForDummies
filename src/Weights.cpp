@@ -44,7 +44,7 @@ windowOutput.push_back(make_pair(ConvLayer3_window, ConvLayer3_output);
       m_convWts.push_back(filts);
     }
 }
-Weights::Weights(/****************/)
+Weights::Weights(vector<LayerParams> layerParams)
 {
   initWeights();
 }

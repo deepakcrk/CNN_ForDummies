@@ -1,3 +1,4 @@
+
 #include <iostream>
 
 
@@ -31,7 +32,7 @@ enum FilterType
 };
 
 
-struct LayerParams
+struct layerParams
 {
   int layerNum;
   enum LayerType type;
