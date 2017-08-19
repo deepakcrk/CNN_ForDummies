@@ -98,6 +98,13 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
 
  fillSomeDefaultValues(layers);
 
+ //PASS THE 'layers' TO ALL OTHER CLASSES (Weights, Convolution, ForwardPass), TO
+ //INITIALIZE THEM. eX. INITIALIZE INTIAL WEIGHTS (FILTERS) WITH THE info inside 'layers'
+ //
+ //
+ //
+ //
+
 
 
 
