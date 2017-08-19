@@ -16,6 +16,15 @@ bool TrainManager::fillSomeDefaultValues(vector<layerParams> & layers)
  struct layerParams layer7;
  struct layerParams layer8;
  struct layerParams layer9;
+
+ //
+ //fill layerNum parameter also, call take the actions based on layer num
+ //for example Convolution(image, 7);
+ //Will do convolution based on 7th layaer
+ //
+ //
+ //
+ //
  //Layer1 is crop layer filling parameters
  layer1.type = CROP_LAYER;  
  layer1.cropX = 448;
