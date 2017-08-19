@@ -97,6 +97,26 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
 
 }
 
+forward(Mat src)
+{
+  for (int i=0; i<layers.size(); i++)
+  {
+    if (layers[i].LayerType == CROP_LAYER)
+      cropper(src, i);
+
+    if (layers[i].LayerType == CONV_LAYER)
+      m_conv.convolve(src, i);
+
+    if (layers[i].LayerType == POOL_LAYER)
+      m_pooler.pooling(src, i);
+
+    if (layers[i].LayerType == ACT_LAYER)
+      m_act.activation(src, i);
+  }
+
+}
+
+
 
 
 bool TrainManager::train(const char* prototxtFile, const char* configFile)
@@ -108,13 +128,13 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
 
  fillSomeDefaultValues(layers);
 
- Weights     wts    (layers);
- Pooling     pooler (layers);
- Convolution conv   (layers);
- Activation  acti   (layers);
- FConnect    fcon   (layers);
- Normalization norm (layers);
- 
+ m_wts.init    (layers);
+ m_pooler.init (layers);
+ m_conv.init   (layers);
+ m_acti.init   (layers);
+ m_fcon.init   (layers);
+ m_norm.init (layers);
+
  ForwardPass  fwd (layers);
  BackwardPass bwd (layers);
 
@@ -128,7 +148,7 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
  waitKey(0);
 
 
- fwd.forward(image /*************/ );
+ forward(image /*************/ );
  
 
 

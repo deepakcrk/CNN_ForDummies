@@ -1,8 +1,12 @@
 #include "ConvolutionLayer.h"
 #include "Weigts.h"
 
+Convolution::Convolution(vector<layerParams> layers)
+{
+}
 
-ConvolutionLayer::convolution(vector<Mat> src, int convLayer)
+
+Convolution::convolve(vector<Mat> src, int convLayer)
 {
 
   vector<vector> filts = m_weights.m_convWts[ convLayer ];
