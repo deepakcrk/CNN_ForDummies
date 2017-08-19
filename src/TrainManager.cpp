@@ -16,72 +16,72 @@ bool TrainManager::fillSomeDefaultValues(vector<layerParams> & layers)
  struct layerParams layer7;
  struct layerParams layer8;
  struct layerParams layer9;
-
- //
- //fill layerNum parameter also, call take the actions based on layer num
- //for example Convolution(image, 7);
- //Will do convolution based on 7th layaer
- //
- //
- //
- //
- //Layer1 is crop layer filling parameters
+ /*************Crop Layer***************/
+ layer1.layerNum = 1;
  layer1.type = CROP_LAYER;  
  layer1.cropX = 448;
  layer1.cropY = 448;
  
- //Layer2 is conv layer filling parameters
+ /**********Conv Layer ****************/
+ layer2.layerNum = 2;
  layer2.type = CONV_LAYER;
  layer2.outputs = 11;
  layer2.windowSize = 5;
  layer2.lr = 0.001;
  layer2.decay = 0.001;
  layer2.stride = 1;
- layer2.filltype = 1;
+ layer2.ft = 1;
  layer2.std = 0.1;
  
- //Activation Layer
+ /********* Activation Layer **********/
+ layer3.layerNum = 3;
  layer3.type = ACT_LAYER;
- layer3.actFunc = 1;
+ layer3.af = 1;
 
- //Pooling Layer
+ /*********** Pooling ***************/
+ layer4.layerNum = 4;
  layer4.type = POOL_LAYER;
  layer4.windowSize = 5;
+ layer4.pt = 1;
 
- //Layer5 is conv layer filling parameters
+ /*********** Conv Layer ***********/
+ layer5.layerNum = 5;
  layer5.type = CONV_LAYER;
  layer5.outputs = 33;
  layer5.windowSize = 7;
  layer5.lr = 0.001;
  layer5.decay = 0.001;
  layer5.stride = 1;
- layer5.filltype = 1;
+ layer5.ft = 1;
  layer5.std = 0.1;
 
- //Activation Layer
+ /********** Activation Layer **********/
+ layer6.layerNum = 6;
  layer6.type = ACT_LAYER;
- layer6.actFunc = 1;
+ layer6.af = 1;
 
- //Layer7 conv layer filling parameters
+ /************ Conv Layer ************/
+ layer7.layerNum = 7;
  layer7.type = CONV_LAYER;
  layer7.outputs = 43;
  layer7.windowSize = 7;
  layer7.lr = 0.001;
  layer7.decay = 0.001;
  layer7.stride = 1;
- layer7.filltype = 1;
+ layer7.ft = 1;
  layer7.std = 0.1;
 
 
- //Activation Layer
+ /******** Activation Layer **********/
+ layer8.layerNum = 8;
  layer8.type = ACT_LAYER;
- layer8.actFunc = 1;
+ layer8.af = 1;
 
- //Pooling Layer
+ /********** Pooling Layer **********/
+ layer9.layerNum = 9;
  layer9.type = POOL_LAYER;
  layer9.windowSize = 5;
-
-
+ layer9.pt = 1;
 
 
  layers.push_back(layer1);
@@ -100,23 +100,25 @@ bool TrainManager::fillSomeDefaultValues(vector<layerParams> & layers)
 
 bool TrainManager::train(const char* prototxtFile, const char* configFile)
 {
- /************** CREATE LAYER PARAMS ***********************/
- vector<layerParams> layers;
+ 
+  //Layer Context
+  vector<layerParams> layers;
  
 
  fillSomeDefaultValues(layers);
- Weights wts;
- wts.initWeights(layers);
- initPooling(layers);
- initConvolution();
 
- //PASS THE 'layers' TO ALL OTHER CLASSES (Weights, Convolution, ForwardPass), TO
- //INITIALIZE THEM. eX. INITIALIZE INTIAL WEIGHTS (FILTERS) WITH THE info inside 'layers'
- //
+ Weights     wts    (layers);
+ Pooling     pooler (layers);
+ Convolution conv   (layers);
+ Activation  acti   (layers);
+ FConnect    fcon   (layers);
+ Normalization norm (layers);
+ 
+ ForwardPass  fwd (layers);
+ BackwardPass bwd (layers);
 
-
-
-
+ fwd.set (wts, pooler, conv, acti, fcon, norm);
+ bwd.set (wts, pooler, conv, acti, fcon, norm);
 
 
  //FIXME load as gray scale currently coded for gray scale only
@@ -124,7 +126,6 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
  imshow("src", src);
  waitKey(0);
 
- ForwardPass fwd;
 
  fwd.forward(image /*************/ );
  

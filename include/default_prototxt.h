@@ -14,28 +14,40 @@ enum LayerType
   NORM_LAYER = 6
 };
 
-// MKE ACT FUNCTION (actFunc) INTO A ENUM
-// MAKE poolingType INTO ENUM
-// MAKE fillType into enum
-//
-// RENAME VARIABLE NAMES PROPERLY
-//
-//
+enum ActFunc
+{
+  RELU = 1,
+  LeakyRELU = 2,
+  Sigmoid = 3
+};
+
+enum PoolType
+{
+  MAXPOOL = 1,
+  AVGPOOL = 2,
+};
+
+enum FilterType
+{
+  Gaussian = 1,
+  Random = 2,
+};
+
 
 struct layerParams
 {
-  //BASED ON THE LAYER TYPE USE PARAMETERS
+  int layerNum;
   enum LayerType type;
-  int cropX;
-  int cropY;
-  int outputs;
-  int windowSize  //use with pool aslo
-  double lr;
-  double decay;
-  double bias;    //used with other layers also
-  int stride;     //used with pool also
-  int fillType; //gaussian
-  int std;
-  int actFunc; //convert it in to enum for relu leaky relu etc.
-  int poolingType;
+  int cropX;           // Only For CropLayer
+  int cropY;           // Only For CropLayer
+  int outputs;         // Common For all valid Layers
+  int windowSize       // Common For all valid Layers
+  double lr;           // Common For all valid Layers
+  double decay;        // Common For all valid Layers  
+  double bias;         // Common For all valid Layers 
+  int stride;          // Common For all valid Layers
+  enum FilterType ft;  // For Convolution/FC Layer
+  double filterStd;    // For Convolution/FC Layer 
+  enum ActFunc af;     // Activation Function
+  enum PoolType pt;    // Pooling Type
 };
