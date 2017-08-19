@@ -100,18 +100,18 @@ bool TrainManager::fillSomeDefaultValues(vector<layerParams> & layers)
 
 bool TrainManager::train(const char* prototxtFile, const char* configFile)
 {
- //initWeights(prototxtFile, configFile);
- //currently doing ONE forwardPass only for ONE image
  /************** CREATE LAYER PARAMS ***********************/
  vector<layerParams> layers;
+ 
 
  fillSomeDefaultValues(layers);
+ Weights wts;
+ wts.initWeights(layers);
+ initPooling(layers);
+ initConvolution();
 
  //PASS THE 'layers' TO ALL OTHER CLASSES (Weights, Convolution, ForwardPass), TO
  //INITIALIZE THEM. eX. INITIALIZE INTIAL WEIGHTS (FILTERS) WITH THE info inside 'layers'
- //
- //
- //
  //
 
 
