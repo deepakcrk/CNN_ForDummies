@@ -1,15 +1,16 @@
-#include "ConvolutionLayer.h"
-#include "Weigts.h"
+#include "Convolution.h"
+#include "Weights.h"
 
-void Convolution::init(vector<layerParams> layers)
+void Convolution::init(vector<LayerParams> layers)
 {
   m_layers = layers;
 }
 
 
-Convolution::convolve(vector<Mat> src, int convLayer)
+void Convolution::convolve(vector<Mat> src, int convLayer)
 {
 
+#if 0
   vector<vector> filts = m_weights.m_convWts[ convLayer ];
 
   if (src.size() == filts[0].size())
@@ -31,6 +32,7 @@ Convolution::convolve(vector<Mat> src, int convLayer)
   }
 
   src = out;
+#endif
 }
 
 

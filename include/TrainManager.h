@@ -9,6 +9,7 @@
 #include "Normalization.h"
 #include "Convolution.h"
 #include "FConnect.h"
+#include "Weights.h"
 
 using namespace std;
 using namespace cv;
@@ -31,6 +32,10 @@ class TrainManager
         void initLayers();
 		
   		bool train(const char* prototxtFile, const char* configFile);
+
+        bool fillSomeDefaultValues(vector<LayerParams> & layers);
+
+        void forward(Mat src);
 };
 
 #endif

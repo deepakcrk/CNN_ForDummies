@@ -1,16 +1,16 @@
 #include <Weights.h>
-
+#include <LayerContext.h>
 
 
 void Weights::init(vector<LayerParams> layers)
 {
 
-  m_layerParams = layerParams;
+  m_layerParams = layers;
   //Add above things in map
   vector<pair<int, int> > windowOutput;
   for (int i=0; i<layers.size(); i++)
   {
-    if (layers[i].type == LayerType::CONV_LAYER)
+    if (layers[i].type == CONV_LAYER)
       windowOutput.push_back(make_pair(layers[i].windowSize, layers[i].outputs));
   }
 

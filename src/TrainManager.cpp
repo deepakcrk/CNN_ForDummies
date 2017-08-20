@@ -26,7 +26,7 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
  imshow("src", src);
  waitKey(0);
 
- forward(image /*************/ );
+ forward(src /*************/ );
  
  return true;
 }
@@ -58,7 +58,7 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
  layer2.decay = 0.001;
  layer2.stride = 1;
  layer2.ft = 1;
- layer2.std = 0.1;
+ layer2.filterStd = 0.1;
  
  /********* Activation Layer **********/
  layer3.layerNum = 3;
@@ -80,7 +80,7 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
  layer5.decay = 0.001;
  layer5.stride = 1;
  layer5.ft = 1;
- layer5.std = 0.1;
+ layer5.filterStd = 0.1;
 
  /********** Activation Layer **********/
  layer6.layerNum = 6;
@@ -96,7 +96,7 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
  layer7.decay = 0.001;
  layer7.stride = 1;
  layer7.ft = 1;
- layer7.std = 0.1;
+ layer7.filterStd = 0.1;
 
 
  /******** Activation Layer **********/
@@ -123,9 +123,9 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
 
 }
 
-forward(Mat src)
+void TrainManager::forward(Mat src)
 {
-  for (int i=0; i<layers.size(); i++)
+  for (int i=0; i<m_layers.size(); i++)
   {
     /***
 

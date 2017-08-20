@@ -1,3 +1,6 @@
+#ifndef _WEIGHTS_
+#define _WEIGHTS_
+
 #include <iostream>
 #include <vector>
 #include <opencv2/opencv.hpp>
@@ -14,6 +17,6 @@ class Weights
     vector<vector<vector<cv::Mat> > > m_convWts;
     vector<cv::Mat> m_fcWts;
     vector<LayerParams> m_layerParams;
-}
+};
 
-
+#endif
