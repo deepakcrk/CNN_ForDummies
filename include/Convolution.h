@@ -5,6 +5,7 @@
 #include <LayerContext.h>
 #include <vector>
 #include <opencv2/opencv.hpp>
+#include "Weights.h"
 
 using namespace std;
 using namespace cv;
@@ -13,7 +14,7 @@ class Convolution
 {
   public:
     void init(vector<LayerParams> layers);
-    void convolve(vector<Mat> src, int i);
+    void convolve(vector<Mat> & src, Weights & wts, const int layerIdx);
     vector<LayerParams> m_layers;
 };
 

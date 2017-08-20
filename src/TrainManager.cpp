@@ -125,14 +125,16 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
 
 void TrainManager::forward(Mat src)
 {
+  vector<Mat> blob; 
+  blob.push_back(src);
+
   for (int i=0; i<m_layers.size(); i++)
   {
-
     //if (m_layers[i].type == CROP_LAYER)
     //  cropper(src, i);
 
     if (m_layers[i].type == CONV_LAYER)
-      m_conv.convolve(src, i);
+      m_conv.convolve(blob, m_wts, i);
 
     //if (m_layers[i].type == POOL_LAYER)
     //  m_pooler.pooling(src, i);
