@@ -57,19 +57,19 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
  layer2.lr = 0.001;
  layer2.decay = 0.001;
  layer2.stride = 1;
- layer2.ft = 1;
+ layer2.ft = Gaussian;
  layer2.filterStd = 0.1;
  
  /********* Activation Layer **********/
  layer3.layerNum = 3;
  layer3.type = ACT_LAYER;
- layer3.af = 1;
+ layer3.af = RELU;
 
  /*********** Pooling ***************/
  layer4.layerNum = 4;
  layer4.type = POOL_LAYER;
  layer4.windowSize = 5;
- layer4.pt = 1;
+ layer4.pt = MAXPOOL;
 
  /*********** Conv Layer ***********/
  layer5.layerNum = 5;
@@ -79,13 +79,13 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
  layer5.lr = 0.001;
  layer5.decay = 0.001;
  layer5.stride = 1;
- layer5.ft = 1;
+ layer5.ft = Gaussian;
  layer5.filterStd = 0.1;
 
  /********** Activation Layer **********/
  layer6.layerNum = 6;
  layer6.type = ACT_LAYER;
- layer6.af = 1;
+ layer6.af = RELU;
 
  /************ Conv Layer ************/
  layer7.layerNum = 7;
@@ -95,20 +95,20 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
  layer7.lr = 0.001;
  layer7.decay = 0.001;
  layer7.stride = 1;
- layer7.ft = 1;
+ layer7.ft = Gaussian;
  layer7.filterStd = 0.1;
 
 
  /******** Activation Layer **********/
  layer8.layerNum = 8;
  layer8.type = ACT_LAYER;
- layer8.af = 1;
+ layer8.af = RELU;
 
  /********** Pooling Layer **********/
  layer9.layerNum = 9;
  layer9.type = POOL_LAYER;
  layer9.windowSize = 5;
- layer9.pt = 1;
+ layer9.pt = MAXPOOL;
 
 
  layers.push_back(layer1);
@@ -127,21 +127,19 @@ void TrainManager::forward(Mat src)
 {
   for (int i=0; i<m_layers.size(); i++)
   {
-    /***
 
-    if (layers[i].LayerType == CROP_LAYER)
-      cropper(src, i);
+    //if (m_layers[i].type == CROP_LAYER)
+    //  cropper(src, i);
 
-    if (layers[i].LayerType == CONV_LAYER)
+    if (m_layers[i].type == CONV_LAYER)
       m_conv.convolve(src, i);
 
-    if (layers[i].LayerType == POOL_LAYER)
-      m_pooler.pooling(src, i);
+    //if (m_layers[i].type == POOL_LAYER)
+    //  m_pooler.pooling(src, i);
 
-    if (layers[i].LayerType == ACT_LAYER)
-      m_acti.activation(src, i);
+    //if (m_layers[i].type == ACT_LAYER)
+    //  m_acti.activation(src, i);
 
-    ***/
   }
 
 }
@@ -155,21 +153,5 @@ void TrainManager::initLayers()
   m_fcon.init(m_layers);
   m_norm.init(m_layers);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
