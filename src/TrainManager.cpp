@@ -116,36 +116,30 @@ forward(Mat src)
 
 }
 
-
+void TrainManager::initLayers()
+{
+  m_wts.init(m_layers);
+  m_pooler.init(m_layers);
+  m_conv.init(m_layers);
+  m_acti.init(m_layers);
+  m_fcon.init(m_layers);
+  m_norm.init(m_layers);
+}
 
 
 bool TrainManager::train(const char* prototxtFile, const char* configFile)
 {
  
-  //Layer Context
-  vector<LayerParams> layers;
- 
+ fillSomeDefaultValues(m_layers);
 
- fillSomeDefaultValues(layers);
-
- m_wts.init    (layers);
- m_pooler.init (layers);
- m_conv.init   (layers);
- m_acti.init   (layers);
- m_fcon.init   (layers);
- m_norm.init (layers);
-
-
+ initLayers();
 
  //FIXME load as gray scale currently coded for gray scale only
  Mat src = imread("input.jpeg");
  imshow("src", src);
  waitKey(0);
 
-
  forward(image /*************/ );
  
-
-
  return true;
 }
