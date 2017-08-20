@@ -2,7 +2,15 @@
 #define _TRAINMANAGER_
 
 #include <iostream>
-#include <LayerContext.h>
+#include <opencv2/opencv.hpp>
+#include "LayerContext.h"
+#include "Pooling.h"
+#include "Activation.h"
+#include "Normalizatio.h"
+#include "Convolution.h"
+
+using namespace std;
+using namespace cv;
 
 class TrainManager 
 {

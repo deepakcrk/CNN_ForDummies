@@ -10,7 +10,7 @@ class Weights
 {
   public:
     Weights(vector<LayerParams> layerParams);
-    bool initWeights(vector<LayerParams> layerParams);
+    bool init(vector<LayerParams> layerParams);
 
     vector<vector<vector<cv::Mat> > > m_convWts;
     vector<cv::Mat> m_fcWts;

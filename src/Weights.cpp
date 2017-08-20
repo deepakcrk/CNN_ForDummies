@@ -7,7 +7,7 @@ Weights::Weights(vector<LayerParams> & layerParams)
 }
 
 
-bool Weights::initWeights(vector<LayerParams> layers)
+bool Weights::init(vector<LayerParams> layers)
 {
 
   //Add above things in map
