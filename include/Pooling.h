@@ -11,7 +11,7 @@ class Pooling
 {
   public:
     init(vector<LayerParams> layers);
-    vector<LayerParams> m_layers
+    vector<LayerParams> m_layers;
 }
 
 #endif
