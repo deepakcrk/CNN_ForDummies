@@ -6,6 +6,25 @@ using namespace cv;
 using namespace std;
 
 
+
+bool TrainManager::train(const char* prototxtFile, const char* configFile)
+{
+ 
+ fillSomeDefaultValues(m_layers);
+
+ initLayers();
+
+ //FIXME load as gray scale currently coded for gray scale only
+ Mat src = imread("input.jpeg");
+ imshow("src", src);
+ waitKey(0);
+
+ forward(image /*************/ );
+ 
+ return true;
+}
+
+
 bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
 {
  struct LayerParams layer1; 
@@ -127,19 +146,19 @@ void TrainManager::initLayers()
 }
 
 
-bool TrainManager::train(const char* prototxtFile, const char* configFile)
-{
- 
- fillSomeDefaultValues(m_layers);
 
- initLayers();
 
- //FIXME load as gray scale currently coded for gray scale only
- Mat src = imread("input.jpeg");
- imshow("src", src);
- waitKey(0);
 
- forward(image /*************/ );
- 
- return true;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
