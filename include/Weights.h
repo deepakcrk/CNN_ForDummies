@@ -14,7 +14,7 @@ class Weights
   public:
     void init(vector<LayerParams> layerParams);
 
-    vector<vector<vector<cv::Mat> > > m_convWts;
+    vector<vector<vector<Mat> > > m_convWts;
     vector<cv::Mat> m_fcWts;
     vector<LayerParams> m_layerParams;
 };

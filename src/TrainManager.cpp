@@ -22,7 +22,7 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
  initLayers();
 
  //FIXME load as gray scale currently coded for gray scale only
- Mat src = imread("input.jpeg");
+ Mat src = imread("data/input.jpeg");
  imshow("src", src);
  waitKey(0);
 
@@ -123,10 +123,13 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
 
 }
 
-void TrainManager::forward(Mat src)
+void TrainManager::forward(Mat & src)
 {
   vector<Mat> blob; 
   blob.push_back(src);
+
+  cerr << "Layers:   " << m_layers.size() << endl;
+  cerr << "BlobSize: " << blob.size() << endl;
 
   for (int i=0; i<m_layers.size(); i++)
   {
