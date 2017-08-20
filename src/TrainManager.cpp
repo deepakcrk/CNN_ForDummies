@@ -14,6 +14,16 @@ TrainManager::~TrainManager()
 {
 }
 
+void TrainManager::initLayers()
+{
+  m_wts.init(m_layers);
+  m_pooler.init(m_layers);
+  m_conv.init(m_layers);
+  m_acti.init(m_layers);
+  m_fcon.init(m_layers);
+  m_norm.init(m_layers);
+}
+
 bool TrainManager::train(const char* prototxtFile, const char* configFile)
 {
  
@@ -22,7 +32,7 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
  initLayers();
 
  //FIXME load as gray scale currently coded for gray scale only
- Mat src = imread("data/input.jpeg");
+ Mat src = imread("data/input.jpeg", CV_LOAD_IMAGE_GRAYSCALE);
  imshow("src", src);
  waitKey(0);
 
@@ -148,15 +158,4 @@ void TrainManager::forward(Mat & src)
   }
 
 }
-
-void TrainManager::initLayers()
-{
-  m_wts.init(m_layers);
-  m_pooler.init(m_layers);
-  m_conv.init(m_layers);
-  m_acti.init(m_layers);
-  m_fcon.init(m_layers);
-  m_norm.init(m_layers);
-}
-
 
