@@ -1,7 +1,7 @@
 #include "Normalization.h"
 
-Normalization::init(vector<LayerParams> layers)
+void Normalization::init(vector<LayerParams> layers)
 {
-    m_layers =layers;
+    m_layers = layers;
 }
 

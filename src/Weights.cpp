@@ -1,20 +1,16 @@
 #include <Weights.h>
 
-Weights::Weights(vector<LayerParams> & layerParams)
+
+
+void Weights::init(vector<LayerParams> layers)
 {
+
   m_layerParams = layerParams;
-  initWeights(layerParams);
-}
-
-
-bool Weights::init(vector<LayerParams> layers)
-{
-
   //Add above things in map
   vector<pair<int, int> > windowOutput;
   for (int i=0; i<layers.size(); i++)
   {
-    if (layers[i].type == CONV_LAYER)
+    if (layers[i].type == LayerType::CONV_LAYER)
       windowOutput.push_back(make_pair(layers[i].windowSize, layers[i].outputs));
   }
 
@@ -22,7 +18,7 @@ bool Weights::init(vector<LayerParams> layers)
 
 
   //m_convWts
-  for (int i=0; i<ConvLayers; i++)
+  for (int i=0; i<windowOutput.size(); i++)
   {
     vector<vector<Mat> > filts;
     int totalFilters = windowOutput[i].second; //x3 incase of Color Image Now code is only for GRAY scale

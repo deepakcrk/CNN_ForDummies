@@ -1,5 +1,12 @@
-#include <iostream>
+#ifndef _LAYER_CONTEXT_
+#define _LAYER_CONTEXT_
 
+#include <iostream>
+#include <opencv2/opencv.hpp>
+#include <vector>
+
+using namespace std;
+using namespace cv;
 
 enum LayerType
 {
@@ -38,7 +45,7 @@ struct LayerParams
   int cropX;           // Only For CropLayer
   int cropY;           // Only For CropLayer
   int outputs;         // Common For all valid Layers
-  int windowSize       // Common For all valid Layers
+  int windowSize;      // Common For all valid Layers
   double lr;           // Common For all valid Layers
   double decay;        // Common For all valid Layers  
   double bias;         // Common For all valid Layers 
@@ -48,3 +55,5 @@ struct LayerParams
   enum ActFunc af;     // Activation Function
   enum PoolType pt;    // Pooling Type
 };
+
+#endif

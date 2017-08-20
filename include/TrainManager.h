@@ -6,8 +6,9 @@
 #include "LayerContext.h"
 #include "Pooling.h"
 #include "Activation.h"
-#include "Normalizatio.h"
+#include "Normalization.h"
 #include "Convolution.h"
+#include "FConnect.h"
 
 using namespace std;
 using namespace cv;
@@ -15,8 +16,8 @@ using namespace cv;
 class TrainManager 
 {
 	public:
-		Trainer();
-		~Trainer();
+		TrainManager();
+		~TrainManager();
 
         vector<LayerParams> m_layers;
 

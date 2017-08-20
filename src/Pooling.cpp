@@ -1,6 +1,6 @@
 #include "Pooling.h"
 
-Pooling::init(vector<LayerParams> layers)
+void Pooling::init(vector<LayerParams> layers)
 {
   m_layers =layers;
 }

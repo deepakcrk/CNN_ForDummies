@@ -10,8 +10,8 @@ using namespace cv;
 class Pooling 
 {
   public:
-    init(vector<LayerParams> layers);
+    void init(vector<LayerParams> layers);
     vector<LayerParams> m_layers;
-}
+};
 
 #endif

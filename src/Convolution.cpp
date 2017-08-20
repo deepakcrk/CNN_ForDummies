@@ -1,7 +1,7 @@
 #include "ConvolutionLayer.h"
 #include "Weigts.h"
 
-Convolution::init(vector<layerParams> layers)
+void Convolution::init(vector<layerParams> layers)
 {
   m_layers = layers;
 }

@@ -9,12 +9,11 @@ using namespace cv;
 class Weights
 {
   public:
-    Weights(vector<LayerParams> layerParams);
-    bool init(vector<LayerParams> layerParams);
+    void init(vector<LayerParams> layerParams);
 
     vector<vector<vector<cv::Mat> > > m_convWts;
     vector<cv::Mat> m_fcWts;
-    vector<LayerParams> m_layerParams
+    vector<LayerParams> m_layerParams;
 }
 
 

@@ -5,12 +5,11 @@
 #include <vector>
 
 using namespace std;
-using namespace cv;
 
 class FConnect
 {
   public:
-    init(vector<LayerParams> layers);
+    void init(vector<LayerParams> layers);
     vector<LayerParams> m_layers;
 };
 

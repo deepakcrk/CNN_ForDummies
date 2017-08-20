@@ -7,10 +7,9 @@
 class Convolution
 {
   public:
-    void init(vector<layerParams> layers);
+    void init(vector<LayerParams> layers);
     bool convolve(Mat src, int i);
-    vector<layerParams> m_layers;
-    Weights wts;
+    vector<LayerParams> m_layers;
 };
 
 #endif

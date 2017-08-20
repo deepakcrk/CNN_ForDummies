@@ -5,7 +5,14 @@
 using namespace cv;
 using namespace std;
 
+TrainManager::TrainManager()
+{
+}
 
+
+TrainManager::~TrainManager()
+{
+}
 
 bool TrainManager::train(const char* prototxtFile, const char* configFile)
 {
@@ -120,6 +127,8 @@ forward(Mat src)
 {
   for (int i=0; i<layers.size(); i++)
   {
+    /***
+
     if (layers[i].LayerType == CROP_LAYER)
       cropper(src, i);
 
@@ -130,7 +139,9 @@ forward(Mat src)
       m_pooler.pooling(src, i);
 
     if (layers[i].LayerType == ACT_LAYER)
-      m_act.activation(src, i);
+      m_acti.activation(src, i);
+
+    ***/
   }
 
 }
