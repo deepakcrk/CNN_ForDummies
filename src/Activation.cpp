@@ -17,7 +17,12 @@ void Activation::activate(vector<Mat> & blob, const int & layerIdx)
     //SEE THIS: http://docs.opencv.org/2.4/modules/imgproc/doc/miscellaneous_transformations.html#threshold
     //FIXME Validation required
     for (int i=0; i<blob.size(); i++)
+    {
+      imshow("b4act", blob[i]);
       threshold(blob[i], out[i], 0, 0/*NOT USED*/, THRESH_TOZERO);
+      imshow("afterAct", out[i]);
+      waitKey(0);
+    }
   }
 
   else if (actiFun == LeakyRELU)

@@ -31,13 +31,21 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
 
  initLayers();
 
+
  //FIXME load as gray scale currently coded for gray scale only
  Mat src = imread("data/input.jpeg", CV_LOAD_IMAGE_GRAYSCALE);
  imshow("src", src);
  waitKey(0);
 
- forward(src /*************/ );
- 
+#define TOTAL_ITER 1
+
+
+ for (int iter=0; iter < TOTAL_ITER; iter++)
+ {
+   forward(src /*************/ );
+   //backward();
+ }
+
  return true;
 }
 
@@ -141,20 +149,22 @@ void TrainManager::forward(Mat & src)
   cerr << "Layers:   " << m_layers.size() << endl;
   cerr << "BlobSize: " << blob.size() << endl;
 
-  for (int i=0; i<m_layers.size(); i++)
+  for (int layerIdx=0; layerIdx<m_layers.size(); layerIdx++)
   {
-    //if (m_layers[i].type == CROP_LAYER)
+    //if (m_layers[layerIdx].type == CROP_LAYER)
     //  cropper(src, i);
 
-    if (m_layers[i].type == CONV_LAYER)
-      m_conv.convolve(blob, m_wts, i);
+    if (m_layers[layerIdx].type == CONV_LAYER)
+      m_conv.convolve(blob, m_wts, layerIdx);
 
-    //if (m_layers[i].type == POOL_LAYER)
-    //  m_pooler.pooling(src, i);
+    if (m_layers[layerIdx].type == ACT_LAYER)
+      m_acti.activate(blob, layerIdx);
 
-    //if (m_layers[i].type == ACT_LAYER)
-    //  m_acti.activation(src, i);
+    //if (m_layers[layerIdx].type == POOL_LAYER)
+    //  m_pooler.pooling(src, layerIdx);
 
+    // ....  ... ....  ....  ...  ....
+    // ....  ... ....  ....  ...  ....
   }
 
 }
