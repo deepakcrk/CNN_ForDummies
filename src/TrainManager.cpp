@@ -28,9 +28,7 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
 {
  
  fillSomeDefaultValues(m_layers);
-
  initLayers();
-
 
  //FIXME load as gray scale currently coded for gray scale only
  Mat src = imread("data/input.jpeg", CV_LOAD_IMAGE_GRAYSCALE);
@@ -39,16 +37,41 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
 
 #define TOTAL_ITER 1
 
-
  for (int iter=0; iter < TOTAL_ITER; iter++)
  {
    forward(src);
    //backward();
  }
-
  return true;
 }
 
+void TrainManager::forward(Mat & src)
+{
+  vector<Mat> blob; 
+  blob.push_back(src);
+
+  cerr << "Layers:   " << m_layers.size() << endl;
+  cerr << "BlobSize: " << blob.size() << endl;
+
+  for (int layerIdx=0; layerIdx<m_layers.size(); layerIdx++)
+  {
+    //if (m_layers[layerIdx].type == CROP_LAYER)
+    //  cropper(src, i);
+
+    if (m_layers[layerIdx].type == CONV_LAYER)
+      m_conv.convolve(blob, m_wts, layerIdx);
+
+    if (m_layers[layerIdx].type == ACT_LAYER)
+      m_acti.activate(blob, layerIdx);
+
+    if (m_layers[layerIdx].type == POOL_LAYER)
+      m_pooler.pooler(blob, layerIdx);
+
+    // ....  ... ....  ....  ...  ....
+    // ....  ... ....  ....  ...  ....
+  }
+
+}
 
 bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
 {
@@ -138,34 +161,6 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
  layers.push_back(layer7);
  layers.push_back(layer8);
  layers.push_back(layer9);
-
 }
 
-void TrainManager::forward(Mat & src)
-{
-  vector<Mat> blob; 
-  blob.push_back(src);
-
-  cerr << "Layers:   " << m_layers.size() << endl;
-  cerr << "BlobSize: " << blob.size() << endl;
-
-  for (int layerIdx=0; layerIdx<m_layers.size(); layerIdx++)
-  {
-    //if (m_layers[layerIdx].type == CROP_LAYER)
-    //  cropper(src, i);
-
-    if (m_layers[layerIdx].type == CONV_LAYER)
-      m_conv.convolve(blob, m_wts, layerIdx);
-
-    if (m_layers[layerIdx].type == ACT_LAYER)
-      m_acti.activate(blob, layerIdx);
-
-    if (m_layers[layerIdx].type == POOL_LAYER)
-      m_pooler.pooler(blob, layerIdx);
-
-    // ....  ... ....  ....  ...  ....
-    // ....  ... ....  ....  ...  ....
-  }
-
-}
 
