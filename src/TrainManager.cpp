@@ -42,7 +42,7 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
 
  for (int iter=0; iter < TOTAL_ITER; iter++)
  {
-   forward(src /*************/ );
+   forward(src);
    //backward();
  }
 
@@ -160,8 +160,8 @@ void TrainManager::forward(Mat & src)
     if (m_layers[layerIdx].type == ACT_LAYER)
       m_acti.activate(blob, layerIdx);
 
-    //if (m_layers[layerIdx].type == POOL_LAYER)
-    //  m_pooler.pooling(src, layerIdx);
+    if (m_layers[layerIdx].type == POOL_LAYER)
+      m_pooler.pooler(blob, layerIdx);
 
     // ....  ... ....  ....  ...  ....
     // ....  ... ....  ....  ...  ....
