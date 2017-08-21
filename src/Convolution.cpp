@@ -27,14 +27,26 @@ void Convolution::convolve(vector<Mat> & src, Weights & wts, const int layerIdx)
       for (int j=0; j<src.size(); j++)
       {
         Mat f;
-        filter2D(src[i], f, -1, filts[i][j]);
+
+        if (j >= filts.size())
+        {
+          cerr << "#ERRORR.." << endl;
+          cerr << "#ERRORR.." << endl;
+        }
+        cerr << "ImageSize : " << src[j].cols << " x " << src[j].rows << endl;
+        cerr << "FilterSize: " << filts[i][j].cols << " x " << filts[i][j].rows << endl;
+
+        filter2D(src[j], f, -1, filts[i][j]);
 
         imshow("Filtered", f);
         waitKey(0);
         added1.push_back (f);
       }
+
       for (int k=1; k<added1.size(); k++)
         added1[0] += added1[k];
+      
+      cerr << "ImageSize : " << added1[0].cols << " x " << added1[0].rows << endl;
 
       out.push_back(added1[0] / added1.size());
     }

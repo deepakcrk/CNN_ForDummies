@@ -2,7 +2,7 @@
 #include <LayerContext.h>
 
 
-void Weights::init(vector<LayerParams> layers)
+void Weights::init(vector<LayerParams> & layers)
 {
 
   m_layerParams = layers;
