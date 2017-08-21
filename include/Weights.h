@@ -17,6 +17,9 @@ class Weights
     vector<vector<vector<Mat> > > m_convWts;
     vector<cv::Mat> m_fcWts;
     vector<LayerParams> m_layerParams;
+    Size imageSizeForFC(const int & layerIndex);
+
+    vector<vector<double> > m_finalOut;
 };
 
 #endif

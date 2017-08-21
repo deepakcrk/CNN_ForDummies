@@ -1,6 +1,9 @@
 #include <Weights.h>
 #include <LayerContext.h>
 
+Size Weights::imageSizeForFC(const int & layerIndex)
+{
+}
 
 void Weights::init(vector<LayerParams> & layers)
 {
@@ -9,11 +12,14 @@ void Weights::init(vector<LayerParams> & layers)
 
   m_convWts.resize(layers.size());
 
+  m_finalOut.resize(layers.size());
+
   vector<pair<int, int> > windowOutput;
   
   for (int i=0; i<layers.size(); i++)
   {
-    if (layers[i].type == CONV_LAYER)
+    //Find the Size of the Image at FC layer
+    if (layers[i].type == CONV_LAYER || layers[i].type == FC_LAYER)
       windowOutput.push_back(make_pair(layers[i].windowSize, layers[i].outputs));
     else
       continue;
