@@ -1,16 +1,20 @@
 #include <iostream>
-#include <TrainManager.h>
+
+#include "TrainManager.h"
+#include "utils.h"
 
 using namespace std;
 
 int main(int argc, char** argv)
 {
-  cout << "CNN..." << endl;
-  TrainManager trainer;
+    cout << "Starting: CNN" << endl;
 
-  trainer.train(argv[1], argv[2]);
+    ConfigMgr confMgr(argc, argv); 
 
-  //if ()
-  //test( ...);
+    TrainManager trainer;
+
+    if (confMgr.mode == 1)
+        trainer.train(argv[1], argv[2]);
+    else if (confMgr.mode == 2)
+        cout << "test: under construction.." << endl;
 }
-

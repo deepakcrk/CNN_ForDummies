@@ -22,12 +22,12 @@ class TrainManager
 
         vector<LayerParams> m_layers;
 
-        Weights m_wts ;
-        Pooling m_pooler ;
-        Convolution m_conv ;
-        Activation m_acti ;
-        FConnect m_fcon ;
-        Normalization m_norm ;
+        Weights m_wts;
+        Pooling m_pooler;
+        Convolution m_conv;
+        Activation m_acti;
+        FConnect m_fcon;
+        Normalization m_norm;
 
         void initLayers();
 		
@@ -35,7 +35,7 @@ class TrainManager
 
         bool fillSomeDefaultValues(vector<LayerParams> & layers);
 
-        void forward(Mat & src);
+        void forward(Mat& src);
 };
 
 #endif
