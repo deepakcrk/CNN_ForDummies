@@ -39,7 +39,7 @@ void Convolution::convolve(vector<Mat> & src, Weights & wts, const int layerIdx)
         filter2D(src[j], f, -1, filts[i][j]);
 
         imshow("Filtered", f);
-        waitKey(0);
+        waitKey(100);
         added1.push_back (f);
       }
 
