@@ -45,9 +45,7 @@ void FConnect::fullyConnect(vector<Mat> & blob, Weights & wts, const int layerId
      sum += cv::sum(tmp)[0]; //XXX FIXME
 
    }
-  
+    wts.m_finalOut[layerIdx][i] = sum;
  }
- 
-
 }
 
