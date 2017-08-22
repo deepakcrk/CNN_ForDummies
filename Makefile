@@ -1,5 +1,5 @@
 
-GCC = g++ 
+GCC = g++ -g
 RM = rm -rf
 
 SRCDIR = src
