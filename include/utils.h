@@ -27,6 +27,9 @@ struct ConfigMgr
 
     void manageConfig (int argc, char**argv) {
 
+        if (argc == 1)
+            usage(argv[0]);
+
         for (int i = 1; i < argc; i++) {
 
             if (strncmp(argv[i], "-train", 6) == 0) 
