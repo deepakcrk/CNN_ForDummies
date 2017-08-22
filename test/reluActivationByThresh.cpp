@@ -1,4 +1,4 @@
-//Test program to check pooling is working or not
+//Test program to check RELU is working or not
 #include <iostream>
 #include <vector>
 #include "opencv2/opencv.hpp"
