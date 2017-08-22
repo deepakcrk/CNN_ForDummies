@@ -11,6 +11,13 @@ void FConnect::fullyConnect(vector<Mat> & blob, Weights & wts, const int layerId
  int outs = m_layers[layerIdx].outputs;
  /*******************************************/
  /***MOVE FC WEIGHTS INIT TO WEIGHTS CLASS***/
+ //
+ // Calculate the size of the image at Fully connected layer and in the begining and 
+ // initialize the weight in the FConnect along with the other weights in the Weights class
+ //
+ // Currently initailization is done so that size of the image is obtained directly. And to
+ // avoid the image size calculation. 
+ //
  if (wts.m_convWts[ layerIdx ].size() == 0)
  {
    vector<vector<Mat> > filts;
