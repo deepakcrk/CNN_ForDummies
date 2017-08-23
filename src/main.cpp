@@ -7,14 +7,19 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    cout << "Starting: CNN" << endl;
-
     ConfigMgr confMgr(argc, argv); 
 
-    TrainManager trainer;
+    if (confMgr.is_ok() > 0)
+    {
+        cout << "Starting: CNN.." << endl;
 
-    if (confMgr.mode == 1)
-        trainer.train(argv[1], argv[2]);
-    else if (confMgr.mode == 2)
-        cout << "test: under construction.." << endl;
+        TrainManager trainer;
+
+        if (confMgr.mode == 1)
+            trainer.train(argv[1], argv[2]);
+        else if (confMgr.mode == 2)
+            cout << "test: under construction.." << endl;
+    }
+    
+    return 0;
 }
