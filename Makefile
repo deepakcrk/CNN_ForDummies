@@ -26,6 +26,7 @@ all: $(TRGT)
 $(TRGT) : $(OBJS)
 	@mkdir -p $(BINDIR)
 	$(GCC) $^ $(LIBS) -o $@
+	@echo "--\nBinary created:" $(TRGT)
 	
 $(OBJDIR)/%.o : $(SRCDIR)/%.cpp
 	@mkdir -p $(OBJDIR)

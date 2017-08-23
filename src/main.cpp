@@ -9,7 +9,9 @@ int main(int argc, char** argv)
 {
     ConfigMgr confMgr(argc, argv); 
 
-    if (confMgr.is_ok() > 0)
+    string errStr = "";
+
+    if (confMgr.is_ok(errStr) < 0)
     {
         cout << "Starting: CNN.." << endl;
 
@@ -20,6 +22,8 @@ int main(int argc, char** argv)
         else if (confMgr.mode == 2)
             cout << "test: under construction.." << endl;
     }
+    else
+        cout << errStr << endl;
     
     return 0;
 }

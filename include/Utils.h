@@ -40,11 +40,11 @@ struct ConfigMgr
 
         for (int i = 1; i < argc; i++) {
 
-            if (strncmp(argv[i], "-train", 6) == 0) 
+            if (     0 == strncmp(argv[i], "-train", 6) || 0 == strncmp(argv[i], "--train", 7))
                 mode = 1;
-            else if (strncmp(argv[i], "-test", 5) == 0) 
+            else if (0 == strncmp(argv[i], "-test", 5)  || 0 == strncmp(argv[i], "--test", 6 ))
                 mode = 2;
-            else if (strncmp(argv[i], "-use", 4) == 0) 
+            else if (0 == strncmp(argv[i], "-use", 4 )  || 0 == strncmp(argv[i], "--use", 5  )) 
                 usage(argv[0]);
             else
             {
@@ -59,7 +59,9 @@ struct ConfigMgr
     }
 
     int is_ok(string& errStr) {
-        errStr = err_msg;
+        stringstream ss;
+        ss << err_code;
+        errStr = "ConfMgr:: Error(" + ss.str() + "): " + err_msg;
         return err_code;
     }
 };
