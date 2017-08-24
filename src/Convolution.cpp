@@ -15,8 +15,6 @@ void Convolution::convolve(Weights& wts, const int layerIdx)
   vector<Mat> & src = wts.layerImgs[ layerIdx-1 ];
   out.clear();
 
-  cerr << "=====> " << wts.layerImgs[layerIdx-1].size() << endl;
-  cerr << "=====> " << src.size()  << ", " <<  filts[0].size() << endl;
 
   if (src.size() == filts[0].size())
   {
@@ -38,7 +36,6 @@ void Convolution::convolve(Weights& wts, const int layerIdx)
         }
 
         cerr << "CONV:: ImageSize : " << src[j].cols << " x " << src[j].rows << endl;
-
         cerr << "CONV:: FilterSize: " << filts[i][j].cols << " x " << filts[i][j].rows << endl;
 
         filter2D(src[j], f, -1, filts[i][j]);

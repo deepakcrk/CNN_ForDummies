@@ -64,34 +64,17 @@ void TrainManager::forward(Mat & src)
     {
       //if (m_layers[layerIdx].type == CROP_LAYER)
       //  cropper(m_wts, i);
-
-
       if (m_layers[layerIdx].type == CONV_LAYER)
       {
-        cerr << "CONVOLUTION: " << endl;
-        cerr << "   layerIdx: " <<  layerIdx << endl;
-        cerr << "Befo.Conv.Blob: " << m_wts.layerImgs[ layerIdx-1].size() << endl;
         m_conv.convolve(m_wts, layerIdx);
-
-        cerr << "Aft.Conv.Blob-p: " << m_wts.layerImgs[ layerIdx-1].size() << endl;
-        cerr << "Aft.Conv.Blob-c: " << m_wts.layerImgs[ layerIdx].size() << endl;
       }
       else if (m_layers[layerIdx].type == ACT_LAYER)
       {
-        cerr << "ACTIVATION:" << endl;
         m_acti.activate(m_wts, layerIdx);
-
-        cerr << "Aft.Acti.Blob-p: " << m_wts.layerImgs[ layerIdx-1].size() << endl;
-        cerr << "Aft.Acti.Blob-c: " << m_wts.layerImgs[ layerIdx].size() << endl;
       }
-
       else if (m_layers[layerIdx].type == POOL_LAYER)
       {
-        cerr << "POOLING:" << endl;
         m_pooler.pooler(m_wts, layerIdx);
-
-        cerr << "Aft.Pool.Blob-p: " << m_wts.layerImgs[ layerIdx-1].size() << endl;
-        cerr << "Aft.Pool.Blob-c: " << m_wts.layerImgs[ layerIdx].size() << endl;
       }
 
       // ....  ... ....  ....  ...  ....
