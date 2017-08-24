@@ -26,7 +26,20 @@ bool BackPropagation::leakyReluDerivative(vector<Mat> blob)
 
 
 
-double BackPropagation::backProp(Weights& wts)
+double BackPropagation::backProp(Weights& wts, const int & layerIdx)
 {
-  
+  //REFERENCE: https://sudeepraja.github.io/Neural/
+
+
+  //For LastLayer
+  // Mat last_d = ( [LastLayerOut]  - [GroundTruth] ) .* derivative(lastLayer) 
+
+
+  //Delta = (transpose(WeightInPrevLayer)*(deltaInPrevLayer) .* derivative(CurrentLayer) )* Transpose(currentInput)
+
+
+  //Weight Updation:
+
+  // W =  W - * lr*W .*Delta
+ 
 }
