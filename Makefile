@@ -8,7 +8,7 @@ OBJDIR = obj
 BINDIR = bin
 
 SRCS = main.cpp TrainManager.cpp Pooling.cpp Weights.cpp \
-		FConnect.cpp Activation.cpp Convolution.cpp Normalization.cpp
+		FConnect.cpp Activation.cpp Convolution.cpp Normalization.cpp BackPropagation.cpp
 
 TRGT = $(BINDIR)/CCN_dummy_0.1.1
 
