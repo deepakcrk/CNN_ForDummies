@@ -23,9 +23,10 @@ void Activation::activate(Weights & wts, const int & layerIdx)
     for (int i=0; i<blob.size(); i++)
     {
       imshow("b4act", blob[i]);
+      waitKey(50);
       threshold(blob[i], out[i], 0, 0/*NOT USED*/, THRESH_TOZERO);
       imshow("afterAct", out[i]);
-      waitKey(0);
+      waitKey(50);
     }
   }
 

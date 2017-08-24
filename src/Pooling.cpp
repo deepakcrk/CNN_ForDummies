@@ -30,7 +30,7 @@ void Pooling::pooler(Weights & wts, const int & layerIdx)
       resize(blob[i], out[i], Size(round(blob[i].cols/wind), round(blob[i].rows/wind)), wind, wind);
       imshow("b4Pool", blob[i]);
       imshow("afterPool", out[i]);
-      waitKey(0);
+      waitKey(100);
     }
   }
 }
