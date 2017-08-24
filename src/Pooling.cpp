@@ -5,9 +5,16 @@ void Pooling::init(vector<LayerParams> & layers)
   m_layers =layers;
 }
 
-void Pooling::pooler(vector<Mat> & blob, const int & layerIdx)
+void Pooling::pooler(Weights & wts, const int & layerIdx)
 { 
+  vector<Mat>& blob = wts.layerImgs[ layerIdx-1 ];
+  vector<Mat>& out = wts.layerImgs[ layerIdx ];
+  
   if (blob.size() == 0) return;
+  
+  out.clear(); //FIXME
+  out.resize(blob.size());
+
 
   double wind = (double) m_layers[layerIdx].windowSize;
 
@@ -20,14 +27,10 @@ void Pooling::pooler(vector<Mat> & blob, const int & layerIdx)
     cerr << "POOL:BlobSize: " << blob.size() << endl;
     for (int i=0; i<blob.size(); i++) 
     {
-      Mat tmp;
-      resize(blob[i], tmp, Size(round(blob[i].cols/wind), round(blob[i].rows/wind)), wind, wind);
-
+      resize(blob[i], out[i], Size(round(blob[i].cols/wind), round(blob[i].rows/wind)), wind, wind);
       imshow("b4Pool", blob[i]);
-      imshow("afterPool", tmp);
+      imshow("afterPool", out[i]);
       waitKey(0);
-
-      blob[i] = tmp;
     }
   }
 }

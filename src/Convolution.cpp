@@ -7,11 +7,16 @@ void Convolution::init(vector<LayerParams> layers)
 }
 
 
-void Convolution::convolve(vector<Mat>& src, Weights& wts, const int layerIdx)
+void Convolution::convolve(Weights& wts, const int layerIdx)
 {
   vector<vector<Mat> > filts = wts.m_convWts[ layerIdx ];
     
-  vector<Mat> out;
+  vector<Mat> & out = wts.layerImgs[ layerIdx ];
+  vector<Mat> & src = wts.layerImgs[ layerIdx-1 ];
+  out.clear();
+
+  cerr << "=====> " << wts.layerImgs[layerIdx-1].size() << endl;
+  cerr << "=====> " << src.size()  << ", " <<  filts[0].size() << endl;
 
   if (src.size() == filts[0].size())
   {
@@ -48,15 +53,22 @@ void Convolution::convolve(vector<Mat>& src, Weights& wts, const int layerIdx)
       
       cerr << "CONV:: ImageSize : " << added1[0].cols << " x " << added1[0].rows << endl;
 
-      out.push_back(added1[0] / added1.size());
+      out.push_back(added1[0] / added1.size()); //FIXME NOT REQUIRED..VERIFY
+    
+     cerr << "CONV:: OutSize   : " << out.size() << endl;
+     cerr << "CONV:: OutSize(r): " << wts.layerImgs[ layerIdx ].size() << endl;
     }
   }
   else
   {
+    cerr << "--------x----------" << endl;
     cerr << "CONV:: Not matching filters depth and images depth" << endl;
+    cerr << "LayerIdx: " << layerIdx << endl;
+    cerr << "     Src: "  << src.size() << endl;
+    cerr << "    Filt: "  << filts[0].size() << endl;
+    cerr << "--------x----------" << endl;
+    exit (0);    
   }
-
-  src = out;
 }
 
 

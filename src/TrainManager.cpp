@@ -42,36 +42,67 @@ bool TrainManager::train(const char* prototxtFile, const char* configFile)
     return true;
 }
 
+
 void TrainManager::forward(Mat & src)
 {
     vector<Mat> blob; 
     blob.push_back(src);
 
+    //First Layer is "INPUT_LAYER" where original data is there
+    m_wts.layerImgs[0] = blob;   //FIXME:  Move To INPUT DataLayer.
+    m_wts.layerImgs[1] = blob;   //FIXME:  For CropLayer, Since Currently Code Is Not Written For CropLayer. (Move to Crop Layer Class)
+                                   
     cerr << "Layers:   " << m_layers.size() << endl;
     cerr << "BlobSize: " << blob.size() << endl;
 
+    vector<Mat> & out = m_wts.layerImgs[ 0 ];
+    cerr << "BlobSize_:"  << out.size() << endl;
+
+    //Starting from layerIdx=1, since first layer is Input_layer, where original data is filled.
+    //FIXME, Move Input_Layer also to the below forLoop 
     for (int layerIdx=0; layerIdx<m_layers.size(); layerIdx++)
     {
-        //if (m_layers[layerIdx].type == CROP_LAYER)
-        //  cropper(src, i);
+      //if (m_layers[layerIdx].type == CROP_LAYER)
+      //  cropper(m_wts, i);
 
-        if (m_layers[layerIdx].type == CONV_LAYER)
-            m_conv.convolve(blob, m_wts, layerIdx);
 
-        if (m_layers[layerIdx].type == ACT_LAYER)
-            m_acti.activate(blob, layerIdx);
+      if (m_layers[layerIdx].type == CONV_LAYER)
+      {
+        cerr << "CONVOLUTION: " << endl;
+        cerr << "   layerIdx: " <<  layerIdx << endl;
+        cerr << "Befo.Conv.Blob: " << m_wts.layerImgs[ layerIdx-1].size() << endl;
+        m_conv.convolve(m_wts, layerIdx);
 
-        if (m_layers[layerIdx].type == POOL_LAYER)
-            m_pooler.pooler(blob, layerIdx);
+        cerr << "Aft.Conv.Blob-p: " << m_wts.layerImgs[ layerIdx-1].size() << endl;
+        cerr << "Aft.Conv.Blob-c: " << m_wts.layerImgs[ layerIdx].size() << endl;
+      }
+      else if (m_layers[layerIdx].type == ACT_LAYER)
+      {
+        cerr << "ACTIVATION:" << endl;
+        m_acti.activate(m_wts, layerIdx);
 
-        // ....  ... ....  ....  ...  ....
-        // ....  ... ....  ....  ...  ....
+        cerr << "Aft.Acti.Blob-p: " << m_wts.layerImgs[ layerIdx-1].size() << endl;
+        cerr << "Aft.Acti.Blob-c: " << m_wts.layerImgs[ layerIdx].size() << endl;
+      }
+
+      else if (m_layers[layerIdx].type == POOL_LAYER)
+      {
+        cerr << "POOLING:" << endl;
+        m_pooler.pooler(m_wts, layerIdx);
+
+        cerr << "Aft.Pool.Blob-p: " << m_wts.layerImgs[ layerIdx-1].size() << endl;
+        cerr << "Aft.Pool.Blob-c: " << m_wts.layerImgs[ layerIdx].size() << endl;
+      }
+
+      // ....  ... ....  ....  ...  ....
+      // ....  ... ....  ....  ...  ....
     }
 
 }
 
 bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
 {
+    struct LayerParams layer0; 
     struct LayerParams layer1; 
     struct LayerParams layer2;
     struct LayerParams layer3;
@@ -81,6 +112,10 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
     struct LayerParams layer7;
     struct LayerParams layer8;
     struct LayerParams layer9;
+
+    /*************InputDataLayer************/
+    layer1.layerNum = 0;
+    layer1.type = INPUT_LAYER;  
 
     /*************Crop Layer***************/
     layer1.layerNum = 1;
@@ -150,6 +185,7 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
     layer9.pt = MAXPOOL;
 
 
+    layers.push_back(layer0);
     layers.push_back(layer1);
     layers.push_back(layer2);
     layers.push_back(layer3);

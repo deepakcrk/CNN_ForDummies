@@ -10,6 +10,8 @@ void Weights::init(vector<LayerParams>& layers)
 
     m_convWts.resize(layers.size());
 
+    layerImgs.resize(layers.size());
+
     m_finalOut.resize(layers.size());
 
     vector<pair<int, int> > windowOutput;

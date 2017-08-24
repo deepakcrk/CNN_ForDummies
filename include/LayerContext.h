@@ -10,6 +10,7 @@ using namespace cv;
 
 enum LayerType
 {
+  INPUT_LAYER = 0,
   CROP_LAYER = 1,
   CONV_LAYER = 2,
   POOL_LAYER = 3,

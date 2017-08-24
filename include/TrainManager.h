@@ -36,6 +36,9 @@ class TrainManager
         bool fillSomeDefaultValues(vector<LayerParams> & layers);
 
         void forward(Mat& src);
+
+        vector<Mat> m_inputBlob;
+
 };
 
 #endif

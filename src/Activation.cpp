@@ -5,9 +5,12 @@ void Activation::init(vector<LayerParams> & layers)
   m_layers = layers;
 }
 
-void Activation::activate(vector<Mat> & blob, const int & layerIdx)
+void Activation::activate(Weights & wts, const int & layerIdx)
 {
-  vector <Mat> out;
+
+  vector<Mat>& out = wts.layerImgs[ layerIdx ];
+  vector<Mat>& blob = wts.layerImgs[ layerIdx-1 ];
+
   out.resize(blob.size());
 
   enum ActFunc actiFun = m_layers[layerIdx].af;

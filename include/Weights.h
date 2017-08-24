@@ -16,6 +16,7 @@ class Weights
     void init(vector<LayerParams>& layerParams);
 
     vector<vector<vector<Mat> > > m_convWts;
+    vector<vector<Mat> > layerImgs;
 
     vector<cv::Mat> m_fcWts;
 

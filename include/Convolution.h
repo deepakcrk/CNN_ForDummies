@@ -18,7 +18,7 @@ class Convolution
 {
   public:
     void init(vector<LayerParams> layers);
-    void convolve(vector<Mat> & src, Weights & wts, const int layerIdx);
+    void convolve(Weights & wts, const int layerIdx);
     vector<LayerParams> m_layers;
 };
 
