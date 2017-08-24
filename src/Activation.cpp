@@ -11,6 +11,7 @@ void Activation::activate(Weights & wts, const int & layerIdx)
   vector<Mat>& out = wts.layerImgs[ layerIdx ];
   vector<Mat>& blob = wts.layerImgs[ layerIdx-1 ];
 
+  out.clear(); //FIXME here
   out.resize(blob.size());
 
   enum ActFunc actiFun = m_layers[layerIdx].af;
