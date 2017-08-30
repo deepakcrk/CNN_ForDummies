@@ -16,7 +16,8 @@ enum LayerType
   POOL_LAYER = 3,
   ACT_LAYER  = 4,
   FC_LAYER   = 5,
-  NORM_LAYER = 6
+  NORM_LAYER = 6,
+  SOFTMAX_LAYER = 7
 };
 
 enum ActFunc

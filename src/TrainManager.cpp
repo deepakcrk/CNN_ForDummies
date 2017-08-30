@@ -95,10 +95,11 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
     struct LayerParams layer7;
     struct LayerParams layer8;
     struct LayerParams layer9;
+    struct LayerParams layer10;
 
     /*************InputDataLayer************/
-    layer1.layerNum = 0;
-    layer1.type = INPUT_LAYER;  
+    layer0.layerNum = 0;
+    layer0.type = INPUT_LAYER;  
 
     /*************Crop Layer***************/
     layer1.layerNum = 1;
@@ -167,6 +168,10 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
     layer9.windowSize = 5;
     layer9.pt = MAXPOOL;
 
+    /************ SOFTMAX_LAYER **********/
+    layer10.layerNum = 10;
+    layer10.type = SOFTMAX_LAYER;
+
 
     layers.push_back(layer0);
     layers.push_back(layer1);
@@ -178,4 +183,5 @@ bool TrainManager::fillSomeDefaultValues(vector<LayerParams> & layers)
     layers.push_back(layer7);
     layers.push_back(layer8);
     layers.push_back(layer9);
+    layers.push_back(layer10);
 }
