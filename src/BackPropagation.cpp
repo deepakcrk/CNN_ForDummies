@@ -35,6 +35,8 @@ double BackPropagation::backProp(Weights& wts, const int & layerIdx)
 
   Mat t (1, numOutputs, CV_64FC1, Scalar(1)) ; //FIXME temporarly putting to 1, Modify based on configuration  
   Mat x (1, numOutputs, CV_64FC1, Scalar(1)) ; // Fill values accordingly
+  int k ; // images * width * height
+  Mat W (numOutputs, k, CV_64FC1, 0); //Append weight
 
   if (wts.m_finalOut[layerIdx].size() != numOutputs)
     cerr << "BACKPROPAGATION:ERROR.." << endl;
@@ -43,9 +45,17 @@ double BackPropagation::backProp(Weights& wts, const int & layerIdx)
     for(int j=0; j<x.cols; ++j)
       x.at<double>(i, j) = wts.m_finalOut[layerIdx][j];
 
-  Mat derivative ; // wts.m_finalOut[ layerIdx ] //properly assign //FIXME XXX
+  Mat deriActFunc ; // wts.m_finalOut[ layerIdx ] //properly assign //FIXME XXX
 
-  Mat derE = ( x - t ).mul(  derivative  );  
+  Mat derE = ( x - t ).mul( deriActFunc );
+
+  double lr = 0.001;
+
+  //W = W - lr .* derE; 
+
+
+
+
 
   //For LastLayer
   // Mat last_d = ( [LastLayerOut]  - [GroundTruth] ) .* derivative(lastLayer)

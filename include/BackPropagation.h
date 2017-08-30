@@ -1,12 +1,15 @@
 #include <iostream>
 #include <vector>
 #include "opencv2/opencv.hpp"
+#include <LayerContext.h>
 #include "Weights.h"
 
 class BackPropagation
 {
   public:
     void init();
+
+    vector<LayerParams> m_layers;
 
     double backProp(Weights& wts, const int & layerIdx);
     
