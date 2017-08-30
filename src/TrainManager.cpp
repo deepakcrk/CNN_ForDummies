@@ -77,7 +77,10 @@ void TrainManager::forward(Mat & src)
       {
         m_pooler.pooler(m_wts, layerIdx);
       }
-
+      else if (m_layers[layerIdx].type == SOFTMAX_LAYER)
+      {
+        m_smax.softmax(m_wts, layerIdx);
+      }
       // ....  ... ....  ....  ...  ....
       // ....  ... ....  ....  ...  ....
     }

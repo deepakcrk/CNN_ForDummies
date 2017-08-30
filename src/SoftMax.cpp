@@ -43,3 +43,8 @@ void SoftMax::softmax(vector<double> & src, vector<double> & dst)
   for (int i=0; i<dst.size(); i++)
     dst[i] = dst[i] / sum;
 }
+
+void SoftMax::softmax(Weights & wts, const int & layerIdx)
+{
+ 
+}
