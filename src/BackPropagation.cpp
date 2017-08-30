@@ -30,10 +30,25 @@ double BackPropagation::backProp(Weights& wts, const int & layerIdx)
 {
   //REFERENCE: https://sudeepraja.github.io/Neural/
 
+  int numOutputs =  m_layers[layerIdx].outputs;
+
+
+  Mat t (1, numOutputs, CV_64FC1, Scalar(1)) ; //FIXME temporarly putting to 1, Modify based on configuration  
+  Mat x (1, numOutputs, CV_64FC1, Scalar(1)) ; // Fill values accordingly
+
+  if (wts.m_finalOut[layerIdx].size() != numOutputs)
+    cerr << "BACKPROPAGATION:ERROR.." << endl;
+
+  for(int i=0; i<x.rows; ++i)
+    for(int j=0; j<x.cols; ++j)
+      x.at<double>(i, j) = wts.m_finalOut[layerIdx][j];
+
+  Mat derivative ; // wts.m_finalOut[ layerIdx ] //properly assign //FIXME XXX
+
+  Mat derE = ( x - t ).mul(  derivative  );  
 
   //For LastLayer
-  // Mat last_d = ( [LastLayerOut]  - [GroundTruth] ) .* derivative(lastLayer) 
-
+  // Mat last_d = ( [LastLayerOut]  - [GroundTruth] ) .* derivative(lastLayer)
 
   //Delta = (transpose(WeightInPrevLayer)*(deltaInPrevLayer) .* derivative(CurrentLayer) )* Transpose(currentInput)
 
