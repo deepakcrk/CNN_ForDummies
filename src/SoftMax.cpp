@@ -1,5 +1,13 @@
 #include "SoftMax.h"
 
+void SoftMax::softmax(Mat & src, Mat & dst)
+{
+  cv::exp(src, dst);
+  double s = cv::sum(dst)[0];
+  dst = dst / s; 
+}
+
+
 void SoftMax::softmax(vector<double> & src, vector<double> & dst)
 {
   dst.resize(src.size());
