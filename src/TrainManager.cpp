@@ -20,6 +20,7 @@ void TrainManager::initLayers()
     m_acti.init(m_layers);
     m_fcon.init(m_layers);
     m_norm.init(m_layers);
+    m_smax.init(m_layers);
 }
 
 bool TrainManager::train(const char* prototxtFile, const char* configFile)

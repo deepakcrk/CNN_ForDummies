@@ -1,5 +1,11 @@
 #include "SoftMax.h"
 
+
+void SoftMax::init(vector<LayerParams> layers)
+{
+  m_layers = layers;
+}
+
 void SoftMax::softmax(vector<Mat> & src, vector<Mat> & dst)
 {
   dst.resize(src.size());

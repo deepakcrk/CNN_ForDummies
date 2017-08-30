@@ -10,6 +10,7 @@
 #include "Convolution.h"
 #include "FConnect.h"
 #include "Weights.h"
+#include "SoftMax.h"
 
 using namespace std;
 using namespace cv;
@@ -28,6 +29,7 @@ class TrainManager
         Activation m_acti;
         FConnect m_fcon;
         Normalization m_norm;
+        SoftMax m_smax;
 
         void initLayers();
 		
