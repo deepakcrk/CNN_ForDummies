@@ -3,6 +3,10 @@
 
 #include <iostream>
 #include <string.h>
+#include <stdio.h>
+
+char protoTxtFile[256] = {'\0'};
+char configFile[256]   = {'\0'};
 
 void usage(char *arg) {
 
@@ -31,8 +35,8 @@ struct ConfigMgr
 
     void manageConfig (int argc, char**argv) {
 
-        if (argc == 1)
-        {
+        if (argc == 1) {
+
             usage(argv[0]);
             err_code = 0;
             err_msg = "No input found";
@@ -40,14 +44,21 @@ struct ConfigMgr
 
         for (int i = 1; i < argc; i++) {
 
-            if (     0 == strncmp(argv[i], "-train", 6) || 0 == strncmp(argv[i], "--train", 7))
+            if (0 == strncmp(argv[i], "-train", 6))
                 mode = 1;
-            else if (0 == strncmp(argv[i], "-test", 5)  || 0 == strncmp(argv[i], "--test", 6 ))
+            else if (0 == strncmp(argv[i], "-test", 5)) 
                 mode = 2;
-            else if (0 == strncmp(argv[i], "-use", 4 )  || 0 == strncmp(argv[i], "--use", 5  )) 
-                usage(argv[0]);
-            else
-            {
+            else if (0 == strncmp(argv[i], "-proto", 6) && argc > i && argv[i+1][0] != '-') 
+                sprintf(protoTxtFile, "%s", argv[++i]);
+            else if (0 == strncmp(argv[i], "-config", 6) && argc > i && argv[i+1][0] != '-') 
+                sprintf(configFile, "%s", argv[++i]);
+            else if (0 == strncmp(argv[i], "-use", 4)) {
+
+                usage(argv[0]);    
+                err_code = 0;
+            }
+            else {
+
                 err_code = i;
                 err_msg = "Invalid param: " + string(argv[i]);
             }
@@ -55,13 +66,19 @@ struct ConfigMgr
     }
 
     int is_ok() {
+
         return err_code;
     }
 
     int is_ok(string& errStr) {
-        stringstream ss;
-        ss << err_code;
-        errStr = "ConfMgr:: Error(" + ss.str() + "): " + err_msg;
+
+        if (!err_msg.empty()) {
+
+            stringstream ss;
+            ss << err_code;
+            errStr = "ConfMgr:: Error(" + ss.str() + "): " + err_msg;
+        }
+
         return err_code;
     }
 };

@@ -22,7 +22,7 @@ int main(int argc, char** argv)
         else if (confMgr.mode == 2)
             cout << "test: under construction.." << endl;
     }
-    else
+    else if (!errStr.empty())
         cout << errStr << endl;
     
     return 0;
