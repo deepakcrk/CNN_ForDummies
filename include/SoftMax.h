@@ -11,4 +11,5 @@ class SoftMax
   public:
     void softmax(vector<double> & src, vector<double> & dst);
     void softmax(Mat & src, Mat & dst);
+    void softmax(vector<Mat> & src, vector<Mat> & dst);
 };
