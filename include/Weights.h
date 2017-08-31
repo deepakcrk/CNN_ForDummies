@@ -24,7 +24,7 @@ class Weights
 
     Size imageSizeForFC(const int& layerIndex);
 
-    vector<vector<double> > m_finalOut;
+    vector<vector<double> > m_finalOut;  //FIXME Use only MAT XXX XXX XXX
 };
 
 #endif

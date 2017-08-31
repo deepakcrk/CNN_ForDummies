@@ -46,7 +46,10 @@ void SoftMax::softmax(vector<double> & src, vector<double> & dst)
 
 void SoftMax::softmax(Weights& wts, const int& layerIdx)
 {
- 
+  //FIXME XXX
+  //CURRENTLY ASSUMING PREVIOUS LAYER IS FCONNECT
+  //AND PREVIOUS LAYER OUTPUT IS A VECTOR.
+  softmax(wts.m_finalOut[layerIdx - 1], wts.m_finalOut[layerIdx]);
 }
 
 
