@@ -1,7 +1,7 @@
 #include "SoftMax.h"
 
 
-void SoftMax::init(vector<LayerParams> layers)
+void SoftMax::init(vector<LayerParams> & layers)
 {
   m_layers = layers;
 }
@@ -44,7 +44,9 @@ void SoftMax::softmax(vector<double> & src, vector<double> & dst)
     dst[i] = dst[i] / sum;
 }
 
-void SoftMax::softmax(Weights & wts, const int & layerIdx)
+void SoftMax::softmax(Weights& wts, const int& layerIdx)
 {
  
 }
+
+
