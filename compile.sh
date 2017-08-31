@@ -1,1 +1,0 @@
-g++ -g -fpermissive src/main.cpp src/TrainManager.cpp src/Pooling.cpp src/Weights.cpp src/FConnect.cpp src/Activation.cpp src/Convolution.cpp src/Normalization.cpp -I./include/ `pkg-config opencv --libs --cflags`
