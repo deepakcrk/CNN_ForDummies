@@ -1,6 +1,7 @@
 #include <TrainManager.h>
 #include <opencv2/opencv.hpp>
 #include <LayerContext.h>
+#include "SoftMax.h"
 
 using namespace cv;
 using namespace std;

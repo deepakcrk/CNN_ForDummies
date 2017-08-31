@@ -7,7 +7,7 @@ INCDIR = include
 OBJDIR = obj
 BINDIR = bin
 
-SRCS = main.cpp TrainManager.cpp Pooling.cpp Weights.cpp \
+SRCS = main.cpp TrainManager.cpp Pooling.cpp Weights.cpp SoftMax.cpp \
 		FConnect.cpp Activation.cpp Convolution.cpp Normalization.cpp BackPropagation.cpp
 
 TRGT = $(BINDIR)/CCN_dummy_0.1.1
